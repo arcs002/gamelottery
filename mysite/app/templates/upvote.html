@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Upvote/Downvote Game{% endblock %}
+
+{% block content %}
+<h1>Upvote/Downvote a Game</h1>
+<form action="" method="POST">
+    <select name="game" required>
+        {% for game in games %}
+            <option value="{{ game }}">{{ game }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" name="action" value="upvote">Upvote</button>
+    <button type="submit" name="action" value="downvote">Downvote</button>
+</form>
+<ul>
+    {% for game, votes in games.items() %}
+        <li>{{ game }} (Votes: {{ votes }})</li>
+    {% endfor %}
+</ul>
+{% endblock %}

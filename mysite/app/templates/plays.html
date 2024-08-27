@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Plays{% endblock %}
+
+{% block content %}
+
+<h2>Games Won by Players</h2>
+<canvas id="winChart" width="400" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('winChart').getContext('2d');
+    const winCounts = {{ win_counts|tojson }};
+    const labels = Object.keys(winCounts);
+    const data = Object.values(winCounts);
+
+    const winChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Games Won',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+<h1>BoardGameGeek Plays </h1>
+<ul>
+    {% for play in plays %}
+        <li>
+            <strong>Date:</strong> {{ play.date }}<br>
+            <strong>Location:</strong> {{ play.location }}<br>
+            <strong>Game:</strong> {{ play.game_name }}<br>
+            <strong>Players:</strong>
+            <ul>
+                {% for player in play.players %}
+                    <li>
+                        {{ player.name }} - Score: {{ player.score }} - Win: {% if player.win == "1" %}Yes{% else %}No{% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

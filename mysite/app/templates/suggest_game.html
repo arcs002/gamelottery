@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Suggest Game{% endblock %}
+
+{% block content %}
+<h1>Suggest a Game</h1>
+<form action="" method="POST">
+    <input type="text" name="game" required>
+    <button type="submit">Suggest</button>
+</form>
+<ul>
+    {% for game, votes in games.items() %}
+        <li>{{ game }} (Votes: {{ votes }})</li>
+    {% endfor %}
+</ul>
+{% endblock %}

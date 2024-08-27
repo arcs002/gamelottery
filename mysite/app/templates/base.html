@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    {% block content %}{% endblock %}
+    <br>
+    <a href="{{ url_for('suggest_game') }}">Go to Suggest Game Page</a><br>
+    <a href="{{ url_for('upvote') }}">Go to Upvote Page</a><br>
+    <a href="{{ url_for('lottery') }}">Go to Lottery Page</a><br>
+    <a href="{{ url_for('plays') }}">Go to Plays Page</a>
+</body>
+</html>
