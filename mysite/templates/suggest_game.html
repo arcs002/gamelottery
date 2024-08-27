@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Suggest Game</title>
+</head>
+<body>
+    <h1>Suggest a Game</h1>
+    <form method="POST">
+        <input type="text" name="game" placeholder="Enter game name" required>
+        <button type="submit">Add Game</button>
+    </form>
+    <h2>Games List</h2>
+    <ul>
+        {% for game, votes in games.items() %}
+            <li>{{ game }} (Votes: {{ votes }})</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('upvote') }}">Go to Upvote Page</a><br>
+    <a href="{{ url_for('lottery') }}">Go to Lottery Page</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lottery</title>
+</head>
+<body>
+    <h1>Lottery</h1>
+    {% if selected_game %}
+        <p>The selected game is: <strong>{{ selected_game }}</strong></p>
+    {% endif %}
+
+    <form method="POST">
+        <button type="submit">Start Lottery</button>
+    </form>
+
+    <h2>Lottery History</h2>
+    <ul>
+        {% for game, timestamp in lottery_history %}
+            <li>{{ timestamp }} - {{ game }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('suggest_game') }}">Go to Suggest Game Page</a><br>
+    <a href="{{ url_for('upvote') }}">Go to Upvote Page</a>
+</body>
+</html>
